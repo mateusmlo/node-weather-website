@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
-		"test": "nodemon src/app.js -e js,hbs -L"
+		"ndm:dev": "nodemon src/app.js -e js,hbs -L",
+		"start": "node src/app.js"
 	},
 	"license": "MIT",
 	"dependencies": {

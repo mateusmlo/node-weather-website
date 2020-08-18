@@ -7,9 +7,7 @@ const weatherForm = document.getElementById('weather-form'),
 
 const getWeather = async (location) => {
 	try {
-		const res = await fetch(
-			`http://127.0.0.1:3333/weather?address=${location}`
-		)
+		const res = await fetch(`/weather?address=${location}`)
 
 		const data = await res.json()
 
