@@ -1,7 +1,5 @@
 const log = console.log
 
-console.log('Client side JS file is loaded')
-
 const weatherForm = document.getElementById('weather-form'),
 	search = document.getElementById('search-input'),
 	msgOne = document.getElementById('msg-1'),
