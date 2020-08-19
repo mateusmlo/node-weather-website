@@ -2,6 +2,9 @@
 
 Simple web application developed using Node.js, Express and handlebars template engine. It was developed with the help of Andrew Mead's amazing [The Complete Node.js Developer Course (3rd Edition)](https://www.udemy.com/course/the-complete-nodejs-developer-course-2/), but it's important to note this is not an exact copy of what was presented in the course as I added my own touch to several parts of the code to try new APIs and JS features. It is not complete, the UI is very raw and I most likely won't change this since I'm currently studying back-end development, but anyone's free to fork it and transform it into a nice UX. I'll be commiting more advanced apps as my knowledge grows.
 
+## To see it in action:
+Simply visit the app's Heroku page @ https://mmlo-weather-app.herokuapp.com
+
 There is a major thing you need to setup in order for it to run on your machine.
 ## Enviroment variables:
 This project uses dotenv as a dev dependency, which means you will have to provide your own API keys through a .env file at the root of the project. The file should just contain
