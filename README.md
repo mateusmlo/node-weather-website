@@ -42,5 +42,5 @@ You may want to remove the -L flag on the "ndm:dev" script since this is somethi
 
 ## TODO:
 - [ ] Add option to see temperature in Farenheits.
-- [ ] Add some more content to some of the pages
-- [ ] Show more weather information
+- [ ] Add some more content to the pages
+- [ ] Show more weather information?
