@@ -14,10 +14,12 @@ const forecast = (latitude, longitude, cb) => {
 		if (body.error || currentData === undefined)
 			cb('Invalid coordinates provided.', undefined)
 
+		const { weather_descriptions, temperature, feelslike } = currentData
+
 		cb(undefined, {
-			weather_descriptions: currentData.weather_descriptions[0],
-			temperature: currentData.temperature,
-			feelslike: currentData.feelslike,
+			weather_descriptions: weather_descriptions[0],
+			temperature,
+			feelslike,
 		})
 	})
 }
