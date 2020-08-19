@@ -4,6 +4,7 @@ Simple web application developed using Node.js, Express and handlebars template 
 
 ## To see it in action:
 Simply visit the app's Heroku page @ https://mmlo-weather-app.herokuapp.com
+***
 
 There is a major thing you need to setup in order for it to run on your machine.
 ## Enviroment variables:
@@ -13,6 +14,7 @@ WEATHERSTACK_KEY = YOUR_API_KEY
 MAPBOX_TOKEN = YOUR_API_TOKEN
 ```
 You can grab the keys by signing up to [Mapbox](https://www.mapbox.com) and [Weatherstack](https://weatherstack.com).
+***
 
 ## Running it locally
 I pretend to update this in the future with support to development and production environment since the current setup is pretty much a workaround by commenting out the lines requiring dotenv information at *src/utils/geocode.js:1* and *src/utils/forecast.js:1*. This is to prevent the app from crashing on Heroku due to requiring what is not there. 
