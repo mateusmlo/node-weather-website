@@ -17,8 +17,10 @@ You can grab the keys by signing up to [Mapbox](https://www.mapbox.com) and [Wea
 ***
 
 ## Running it locally
-I pretend to update this in the future with support to development and production environment since the current setup is pretty much a workaround by commenting out the lines requiring dotenv information at *src/utils/geocode.js:1* and *src/utils/forecast.js:1*. This is to prevent the app from crashing on Heroku due to requiring what is not there. 
-Anyway, to run it without watching for changes:
+I pretend to update this in the future with support to development and production environment since the current setup is pretty much a workaround by commenting out the lines requiring dotenv information at *src/utils/geocode.js:1* and *src/utils/forecast.js:1*. This is to prevent the app from crashing on Heroku due to requiring what is not there.
+First things first, install the dependencies by running *npm install* or *yarn add* from the command line.
+
+Then, to run it without watching for changes:
 ```
 yarn start
 ```
@@ -30,7 +32,7 @@ To watch for changes using nodemon:
 ```
 yarn ndm:dev
 ```
-Or
+Or:
 ```
 npm ndm:dev
 ```
