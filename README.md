@@ -36,7 +36,7 @@ Note this will also watch for changes made in the .hbs files under /templates.
 
 You may want to remove the -L flag on the "ndm:dev" script since this is something I had to add for nodemon to track changes using WSL Ubuntu. It may work fine without it for you.
 
-##TODO:
+## TODO:
 - [ ] Add option to retrieve temperature in Farenheits.
 - [ ] Add some more content to some of the pages
 - [ ] Show more weather information
