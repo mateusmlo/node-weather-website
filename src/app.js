@@ -42,7 +42,7 @@ app.get('/help', (req, res) => {
 	res.render('help', {
 		title: 'Help',
 		name: 'Mateus M.',
-		helpText: "Here's how we can help you",
+		helpText: "Here's how we can help you (example page only)",
 	})
 })
 
@@ -71,17 +71,8 @@ app.get('/weather', async (req, res) => {
 			feelslike,
 		})
 	} catch (err) {
-		log({ err })
 		res.send(err)
 	}
-})
-
-app.get('/help/*', (req, res) => {
-	res.status(404).render('404', {
-		title: 'Page not found',
-		name: 'Mateus M.',
-		error: 'Help article not found',
-	})
 })
 
 app.get('*', (req, res) => {
