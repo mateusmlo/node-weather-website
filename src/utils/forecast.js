@@ -1,27 +1,26 @@
-//require('dotenv/config')
-const request = require('postman-request')
+require('dotenv/config')
+const axios = require('axios').default
+const log = console.log
 
-const forecast = (latitude, longitude, cb) => {
-	const url = `http://api.weatherstack.com/current?access_key=${
-		process.env.WEATHERSTACK_KEY
-	}&query=${Number(latitude)},${Number(longitude)}&unit=c`
+const forecast = async (latitude, longitude) => {
+	try {
+		const URL = `http://api.weatherstack.com/current?access_key=${
+			process.env.WEATHERSTACK_KEY
+		}&query=${Number(latitude)},${Number(longitude)}&unit=c`
 
-	//since res is already passed in as an argument we can just destructure its body property which we use throughout the code
-	request({ url, json: true }, (err, { body }) => {
-		const currentData = body.current
+		const response = await axios.get(URL)
+		const { data } = response
 
-		if (err) cb('Unable to connect to weather services.', undefined)
-		if (body.error || currentData === undefined)
-			cb('Invalid coordinates provided.', undefined)
+		const currentData = data.current
 
-		const { weather_descriptions, temperature, feelslike } = currentData
+		if (data.error || currentData === undefined) {
+			throw new Error('Invalid coordinates provided.')
+		}
 
-		cb(undefined, {
-			weather_descriptions: weather_descriptions[0],
-			temperature,
-			feelslike,
-		})
-	})
+		return currentData
+	} catch (err) {
+		log(err)
+	}
 }
 
 module.exports = forecast

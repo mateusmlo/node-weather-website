@@ -1,5 +1,3 @@
-const log = console.log
-
 const weatherForm = document.getElementById('weather-form'),
 	search = document.getElementById('search-input'),
 	msgOne = document.getElementById('msg-1'),
@@ -7,17 +5,13 @@ const weatherForm = document.getElementById('weather-form'),
 
 const getWeather = async (location) => {
 	try {
+		if (location.length === 0) throw new Error('No location was provided.')
+
 		const res = await fetch(`/weather?address=${location}`)
 
 		const data = await res.json()
 
-		if (data.err) {
-			throw new Error(data.err)
-		}
-
-		if (!data.location) {
-			throw new Error(`No location was provided`)
-		}
+		if (data.err) throw new Error(data.err)
 
 		const forecast = Object.assign({}, data)
 
@@ -28,14 +22,11 @@ const getWeather = async (location) => {
 			feelslike,
 		} = forecast
 
-		log(forecast)
-
 		msgOne.textContent = userLocation
 		msgTwo.textContent = `[${weather_descriptions}] ${temperature}°C. It feels like ${feelslike}°C.`
 	} catch (err) {
 		msgOne.textContent = err
 		msgTwo.textContent = ''
-		log(err)
 	}
 }
 
