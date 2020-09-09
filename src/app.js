@@ -42,49 +42,37 @@ app.get('/help', (req, res) => {
 	res.render('help', {
 		title: 'Help',
 		name: 'Mateus M.',
-		helpText: "Here's how we can help you",
+		helpText: "Here's how we can help you (example page only)",
 	})
 })
 
-app.get('/weather', (req, res) => {
+app.get('/weather', async (req, res) => {
 	const address = req.query.address
 
-	if (!address) {
-		return res.send({
-			error: 'You must provide an address',
+	try {
+		// properties based on obj returned by Mapbox API
+		const locationData = await geocode(address)
+		if (!locationData) throw new Error('Unable to find location')
+
+		const latitude = locationData.center[1],
+			longitude = locationData.center[0],
+			location = locationData.place_name
+
+		// properties based on obj returned by Weatherstack API
+		const weatherData = await forecast(latitude, longitude),
+			weather_descriptions = weatherData.weather_descriptions[0],
+			temperature = weatherData.temperature,
+			feelslike = weatherData.feelslike
+
+		res.send({
+			location,
+			weather_descriptions,
+			temperature,
+			feelslike,
 		})
+	} catch (err) {
+		res.send(err)
 	}
-
-	geocode(address, (err, { latitude, longitude, location } = {}) => {
-		if (err) {
-			return res.send({ err })
-		}
-
-		forecast(
-			latitude,
-			longitude,
-			(err, { weather_descriptions, temperature, feelslike }) => {
-				if (err) {
-					return res.send({ err })
-				}
-
-				res.send({
-					location,
-					weather_descriptions,
-					temperature,
-					feelslike,
-				})
-			}
-		)
-	})
-})
-
-app.get('/help/*', (req, res) => {
-	res.status(404).render('404', {
-		title: 'Page not found',
-		name: 'Mateus M.',
-		error: 'Help article not found',
-	})
 })
 
 app.get('*', (req, res) => {
