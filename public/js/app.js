@@ -10,8 +10,11 @@ const getWeather = async (location) => {
 		const res = await fetch(`/weather?address=${location}`)
 
 		const data = await res.json()
-
-		if (data.err) throw new Error(data.err)
+		// if invalid location is provided all props of the returned data object
+		// are undefined, so we catch this
+		if (data.temperature === undefined) {
+			throw new Error('Invalid location provided')
+		}
 
 		const forecast = Object.assign({}, data)
 
