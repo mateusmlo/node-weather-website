@@ -52,7 +52,6 @@ app.get('/weather', async (req, res) => {
 	try {
 		// properties based on obj returned by Mapbox API
 		const locationData = await geocode(address)
-		if (!locationData) throw new Error('Unable to find location')
 
 		const latitude = locationData.center[1],
 			longitude = locationData.center[0],
@@ -71,7 +70,7 @@ app.get('/weather', async (req, res) => {
 			feelslike,
 		})
 	} catch (err) {
-		res.send(err)
+		log(err)
 	}
 })
 
